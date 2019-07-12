@@ -20,7 +20,7 @@ update_id = None
 #857399797
 pathname = os.path.dirname(sys.argv[0])
 tempat = os.path.abspath(pathname) + "/capture.jpg"
-bot = telegram.Bot('857399797:AAHkSZbQ5xPBvrcSl_Bih7PIPBvG1K2ytQQ')
+bot = telegram.Bot('Your Token')
 response = bot.getUpdates()
 
 
@@ -29,7 +29,7 @@ def main():
     """Run the bot."""
     global update_id
     # Telegram Bot Authorization Token
-    bot = telegram.Bot('857399797:AAHkSZbQ5xPBvrcSl_Bih7PIPBvG1K2ytQQ')
+
 
     # get the first pending update_id, this is so we can skip over it in case
     # we get an "Unauthorized" exception.
