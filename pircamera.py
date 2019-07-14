@@ -76,16 +76,17 @@ def echo(bot):
                             if os.path.exists(tempat):
                                 print("ada")
                                 bot.send_photo(chat_id=update.message.chat_id, photo=open(tempat,'rb'))
-                                update.message.reply_text("ok gk ni ?")#
+                                update.message.reply_text("ok gk ni ?")
                             else:
                                 print("ada gan")        
-                                time.sleep(5) #to avoid multiple detection
-                                time.sleep(0.1) #loop delay, should be less than detection delay
+                                time.sleep(5)
+                        
                 except:
                 # Sends a message to the chat
                     print("error bro")
                     #bot.sendPhoto(chat_id= 857399797, photo=open(tempat))
                     # bot.sendMessage(chat_id=857399797, str("Hi! MakerPro"))
+                    os.remove(tempat)
                     GPIO.cleanup()
             else:
                 update.message.reply_text(update.message.text)
