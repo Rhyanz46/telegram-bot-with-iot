@@ -78,16 +78,17 @@ def echo(bot):
                         update.message.reply_text("Ada Pergerakan")
                         for update in bot.get_updates(offset=update_id, timeout=100000):
                             update_id = update.update_id + 1
-                            if update.message:
-                                if update.message.text == "minta foto":
-                                    balasan = True
-                                    update.message.reply_text("ok wait")
-                                    with open(tempat_gambar + '/log.txt') as f:
-                                        my_list = list(f)
-                                    for a in my_list:
-                                        bot.send_photo(chat_id=update.message.chat_id, photo=open(a,'rb'))          
-                                        sleep(1)
-                                        os.remove(a)
+                            if update.message and update.message.text == "minta foto":
+                                balasan = True
+                                update.message.reply_text("ok wait")
+                                with open(tempat_gambar + '/log.txt') as f:
+                                    my_list = list(f)
+                                for a in my_list:
+                                    bot.send_photo(chat_id=update.message.chat_id, photo=open(a,'rb'))          
+                                    sleep(1)
+                                    os.remove(a)
+                            else:
+                                break
                                     
                         # if os.path.exists(alamat_foto):
                         #     bot.send_photo(chat_id=update.message.chat_id, photo=open(alamat_foto,'rb'))
