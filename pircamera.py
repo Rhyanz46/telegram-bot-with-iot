@@ -13,9 +13,10 @@ GPIO.setup(23, GPIO.IN)
 camera = picamera.PiCamera()
 
 update_id = None
+balas = 0
 
 pathname = os.path.dirname(sys.argv[0])
-tempat = os.path.abspath(pathname) + "/capture.jpg"
+tempat = os.path.abspath(pathname) + "/"
 
 
 def main():
@@ -59,16 +60,10 @@ def echo(bot):
                 sleep(2)
                 while True:
                     if GPIO.input(23): # nilai awalnya adalah 0, jika terdeteksi maka nilainya 1
-                        # camera.start_preview() jika kau mau tampilin gambar di monitor aktifkan kodingan ini
-                        camera.capture(tempat)
-                        # camera.resolution = (524, 568)
-                        # camera.stop_preview() jika kau mau matikan kamera
-                        print("Motion Detected...")
-                        print("-----------------")
-                        print(update.to_json())
-                        print("-----------------")
+                        nama = str(datetime.datetime.now()) + ".jpg"
+                        camera.capture(tempat + nama)
+                        update.message.reply_text("Ada Pergerakan")
                         if os.path.exists(tempat):
-                            print("ada")
                             bot.send_photo(chat_id=update.message.chat_id, photo=open(tempat,'rb'))
                         else:
                             update.message.reply_text("maaf gambarnya terhapus")
