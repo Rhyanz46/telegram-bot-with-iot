@@ -73,7 +73,7 @@ def echo(bot):
                         camera.capture(tempat)
                         camera.stop_preview()
                         print("Motion Detected...")
-                        if !Balasan:
+                        if not Balasan:
                             update.message.reply_text("ada pergerakan bro . . .")
                         elif Balasan:
                             bot.send_photo(chat_id=update.message.chat_id, photo=open(tempat,'rb'))
