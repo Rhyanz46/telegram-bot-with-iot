@@ -72,12 +72,17 @@ def echo(bot):
                             camera.capture(tempat)
                             camera.stop_preview()
                             print("Motion Detected...")
-                            if os.path.exists(tempat):
-                                print("ada")
-                                bot.send_photo(chat_id=update.message.chat_id, photo=open(tempat,'rb'))
-                                update.message.reply_text("ok gk ni ?")
-                            else:
-                                print("tidak ada gambarnya")        
+                            balasan = bot.get_updates(offset=update_id, timeout=10)
+                            balasan_id = balasan.update_id + 1
+                            if balasan.message:
+                                if balasan.message.text == "mana?":
+                                    balasan.message.reply_text("ini bro")
+                                # if os.path.exists(tempat):
+                                #     print("ada")
+                                #     bot.send_photo(chat_id=update.message.chat_id, photo=open(tempat,'rb'))
+                                #     update.message.reply_text("ok gk ni ?")
+                                # else:
+                                #     print("tidak ada gambarnya")        
                                 
                         
                 except:
