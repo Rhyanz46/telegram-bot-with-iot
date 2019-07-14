@@ -72,7 +72,7 @@ def echo(bot):
                                 bot.send_photo(chat_id=update.message.chat_id, photo=open(tempat,'rb'))
                             else:
                                 update.message.reply_text("maaf gambarnya terhapus")
-                                
+                        
                         
                 except:
                     print("exit")
