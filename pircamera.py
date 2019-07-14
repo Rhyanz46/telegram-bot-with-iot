@@ -63,6 +63,9 @@ def echo(bot):
                             camera.capture(tempat)
                             camera.stop_preview()
                             print("Motion Detected...")
+                            print("-----------------")
+                            print(update.to_json())
+                            print("-----------------")
                             balasan = bot.get_updates(offset=update_id, timeout=10)
                             balasan_id = balasan.update_id + 1
                             if balasan.message:
@@ -80,7 +83,8 @@ def echo(bot):
                         
                 except:
                     print("error bro")
-                    os.remove(tempat)
+                    if os.path.exists(tempat):
+                        os.remove(tempat)
                     GPIO.cleanup()
             else:
                 update.message.reply_text(update.message.text)
