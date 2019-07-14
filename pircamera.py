@@ -48,7 +48,7 @@ def main():
 def echo(bot):
     """Echo the message the user sent."""
     global update_id
-    print("Sekarang id yang ke : {}".format(update_id))
+    # print("Sekarang id yang ke : {}".format(update_id))
     for update in bot.get_updates(offset=update_id, timeout=100000):
         update_id = update.update_id + 1
 
@@ -58,21 +58,15 @@ def echo(bot):
                 try:
                     time.sleep(2)
                     while True:
-                        if GPIO.input(23):
-                            camera.start_preview()
+                        if GPIO.input(23): # nilai awalnya adalah 0, jika terdeteksi maka nilainya 1
+                            # camera.start_preview() jika kau mau tampilin gambar di monitor aktifkan kodingan ini
                             camera.capture(tempat)
-                            camera.stop_preview()
+                            # camera.resolution = (524, 568)
+                            # camera.stop_preview() jika kau mau matikan kamera
                             print("Motion Detected...")
                             print("-----------------")
                             print(update.to_json())
                             print("-----------------")
-                            balasan = bot.get_updates(offset=update_id, timeout=10)
-                            balasan_id = balasan.update_id + 1
-                            if balasan.message:
-                                if balasan.message.text == "mana?":
-                                    balasan.message.reply_text("ini bro")
-                            else:
-                                raise
                                 # if os.path.exists(tempat):
                                 #     print("ada")
                                 #     bot.send_photo(chat_id=update.message.chat_id, photo=open(tempat,'rb'))
@@ -82,11 +76,15 @@ def echo(bot):
                                 
                         
                 except:
-                    print("error bro")
-                    if os.path.exists(tempat):
+                    try:
                         os.remove(tempat)
-                    GPIO.cleanup()
+                        GPIO.cleanup()
+                    except:
+                        print("error bro")
+                        
             else:
+                print("")
+                print("")
                 update.message.reply_text(update.message.text)
                 print(update.to_json())
                 print("")
