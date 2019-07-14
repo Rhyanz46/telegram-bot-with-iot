@@ -71,7 +71,8 @@ def echo(bot):
                         else:
                             file = open(tempat_gambar + "/log.txt","a+")
                             balasan = False
-                        file.write(alamat_foto + "\r\n")
+                        # file.write(alamat_foto + "\r\n")
+                        file.write(alamat_foto + "\r")
                         file.close()
                         camera.capture(alamat_foto)
                         update.message.reply_text("Ada Pergerakan")
