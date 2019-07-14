@@ -17,7 +17,9 @@ update_id = None
 balas = 0
 
 pathname = os.path.dirname(sys.argv[0])
-tempat = os.path.abspath(pathname)
+root_lokasi = os.path.abspath(pathname)
+tempat_gambar = os.path.abspath(os.path.join(pathname, 'foto'))
+
 
 
 def main():
@@ -63,7 +65,7 @@ def echo(bot):
                 while True:
                     if GPIO.input(23): # nilai awalnya adalah 0, jika terdeteksi maka nilainya 1
                         nama = str(datetime.datetime.now()) + ".jpg"
-                        alamat_foto = tempat + "/foto" + nama
+                        alamat_foto = tempat_gambar + nama
                         camera.capture(alamat_foto)
                         if balasan:
                             file = open("foto/log.txt","w+")
