@@ -97,6 +97,7 @@ def echo(bot):
                 print(update.to_json())
                 print("")
                 print("")
+        sleep(2)
 
            
 
