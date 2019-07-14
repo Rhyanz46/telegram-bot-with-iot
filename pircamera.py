@@ -64,33 +64,33 @@ def echo(bot):
         if update.message:
             if update.message.text == "/start":
                 update.message.reply_text("Selamat datang di aplikasi deteksi pergerakan, kamu akan mendapatkan notifikasi jika ada pergerakan")
-                try:
-                    time.sleep(2)
-                    while True:
-                        if GPIO.input(23):
-                            camera.start_preview()
-                            camera.capture(tempat)
-                            camera.stop_preview()
-                            print("Motion Detected...")
-                            balasan = bot.get_updates(offset=update_id, timeout=10)
-                            balasan_id = balasan.update_id + 1
-                            if balasan.message:
-                                if balasan.message.text == "mana?":
-                                    balasan.message.reply_text("ini bro")
-                            else:
-                                raise
-                                # if os.path.exists(tempat):
-                                #     print("ada")
-                                #     bot.send_photo(chat_id=update.message.chat_id, photo=open(tempat,'rb'))
-                                #     update.message.reply_text("ok gk ni ?")
-                                # else:
-                                #     print("tidak ada gambarnya")        
+                # try:
+                #     time.sleep(2)
+                #     while True:
+                #         if GPIO.input(23):
+                #             camera.start_preview()
+                #             camera.capture(tempat)
+                #             camera.stop_preview()
+                #             print("Motion Detected...")
+                #             balasan = bot.get_updates(offset=update_id, timeout=10)
+                #             balasan_id = balasan.update_id + 1
+                #             if balasan.message:
+                #                 if balasan.message.text == "mana?":
+                #                     balasan.message.reply_text("ini bro")
+                #             else:
+                #                 raise
+                #                 # if os.path.exists(tempat):
+                #                 #     print("ada")
+                #                 #     bot.send_photo(chat_id=update.message.chat_id, photo=open(tempat,'rb'))
+                #                 #     update.message.reply_text("ok gk ni ?")
+                #                 # else:
+                #                 #     print("tidak ada gambarnya")        
                                 
                         
-                except:
-                    print("error bro")
-                    # os.remove(tempat)
-                    GPIO.cleanup()
+                # except:
+                #     print("error bro")
+                #     # os.remove(tempat)
+                #     GPIO.cleanup()
             else:
                 update.message.reply_text(update.message.text)
                 print(update.to_json())
