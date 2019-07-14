@@ -70,6 +70,7 @@ def echo(bot):
                             file = open(tempat_gambar + "/log.txt","w+")
                         else:
                             file = open(tempat_gambar + "/log.txt","a+")
+                            balasan = False
                         file.write(alamat_foto + "\r\n")
                         file.close()
                         camera.capture(alamat_foto)
@@ -78,12 +79,14 @@ def echo(bot):
                             update_id = update.update_id + 1
                             if update.message:
                                 if update.message.text == "minta foto":
+                                    balasan = True
                                     update.message.reply_text("ok wait")
                                     with open(tempat_gambar + '/log.txt') as f:
                                         my_list = list(f)
                                     for a in my_list:
-                                        update.message.reply_text(a)
+                                        bot.send_photo(chat_id=update.message.chat_id, photo=open(a,'rb'))          
                                         sleep(1)
+                                        os.remove(a)
                                     
                         # if os.path.exists(alamat_foto):
                         #     bot.send_photo(chat_id=update.message.chat_id, photo=open(alamat_foto,'rb'))
