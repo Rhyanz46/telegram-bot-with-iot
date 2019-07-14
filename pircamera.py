@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-import time
+# import time
 import picamera
 import logging
 import telegram
@@ -20,9 +20,6 @@ update_id = None
 #857399797
 pathname = os.path.dirname(sys.argv[0])
 tempat = os.path.abspath(pathname) + "/capture.jpg"
-bot = telegram.Bot('857399797:AAHkSZbQ5xPBvrcSl_Bih7PIPBvG1K2ytQQ')
-response = bot.getUpdates()
-
 
 
 def main():
