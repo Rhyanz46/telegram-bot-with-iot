@@ -63,8 +63,11 @@ def echo(bot):
         update_id = update.update_id + 1
 
         if update.message:
-            if update.message.text == "/start":
-                update.message.reply_text("Selamat datang di aplikasi deteksi pergerakan, kamu akan mendapatkan notifikasi jika ada pergerakan")
+            update.message.reply_text(update.message.text)
+
+        # if update.message:
+        #     if update.message.text == "/start":
+        #         update.message.reply_text("Selamat datang di aplikasi deteksi pergerakan, kamu akan mendapatkan notifikasi jika ada pergerakan")
                 # try:
                 #     time.sleep(2)
                 #     while True:
@@ -92,13 +95,13 @@ def echo(bot):
                 #     print("error bro")
                 #     # os.remove(tempat)
                 #     GPIO.cleanup()
-            else:
-                update.message.reply_text(update.message.text)
-                print(update.to_json())
-                print("")
-                print("")
-        else:
-            sleep(2)
+        #     else:
+        #         update.message.reply_text(update.message.text)
+        #         print(update.to_json())
+        #         print("")
+        #         print("")
+        # else:
+        #     sleep(2)
 
            
 
