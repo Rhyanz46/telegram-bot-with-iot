@@ -56,7 +56,7 @@ def echo(bot):
             if update.message.text == "/start":
                 update.message.reply_text("Selamat datang di aplikasi deteksi pergerakan, kamu akan mendapatkan notifikasi jika ada pergerakan")
                 # try:
-                time.sleep(2)
+                sleep(2)
                 while True:
                     if GPIO.input(23): # nilai awalnya adalah 0, jika terdeteksi maka nilainya 1
                         # camera.start_preview() jika kau mau tampilin gambar di monitor aktifkan kodingan ini
