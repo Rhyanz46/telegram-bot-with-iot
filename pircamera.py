@@ -67,18 +67,19 @@ def echo(bot):
                             print("-----------------")
                             print(update.to_json())
                             print("-----------------")
-                                # if os.path.exists(tempat):
-                                #     print("ada")
-                                #     bot.send_photo(chat_id=update.message.chat_id, photo=open(tempat,'rb'))
-                                #     update.message.reply_text("ok gk ni ?")
-                                # else:
-                                #     print("tidak ada gambarnya")        
+                                if os.path.exists(tempat):
+                                    print("ada")
+                                    bot.send_photo(chat_id=update.message.chat_id, photo=open(tempat,'rb'))
+                                else:
+                                    update.message.reply_text("maaf gambarnya terhapus")
                                 
                         
                 except:
+                    print("exit")
                     try:
                         os.remove(tempat)
                         GPIO.cleanup()
+                        print("sukses")
                     except:
                         print("error bro")
                         
