@@ -55,33 +55,33 @@ def echo(bot):
         if update.message:
             if update.message.text == "/start":
                 update.message.reply_text("Selamat datang di aplikasi deteksi pergerakan, kamu akan mendapatkan notifikasi jika ada pergerakan")
-                try:
-                    time.sleep(2)
-                    while True:
-                        if GPIO.input(23): # nilai awalnya adalah 0, jika terdeteksi maka nilainya 1
-                            # camera.start_preview() jika kau mau tampilin gambar di monitor aktifkan kodingan ini
-                            camera.capture(tempat)
-                            # camera.resolution = (524, 568)
-                            # camera.stop_preview() jika kau mau matikan kamera
-                            print("Motion Detected...")
-                            print("-----------------")
-                            print(update.to_json())
-                            print("-----------------")
-                            if os.path.exists(tempat):
-                                print("ada")
-                                bot.send_photo(chat_id=update.message.chat_id, photo=open(tempat,'rb'))
-                            else:
-                                update.message.reply_text("maaf gambarnya terhapus")
+                # try:
+                time.sleep(2)
+                while True:
+                    if GPIO.input(23): # nilai awalnya adalah 0, jika terdeteksi maka nilainya 1
+                        # camera.start_preview() jika kau mau tampilin gambar di monitor aktifkan kodingan ini
+                        camera.capture(tempat)
+                        # camera.resolution = (524, 568)
+                        # camera.stop_preview() jika kau mau matikan kamera
+                        print("Motion Detected...")
+                        print("-----------------")
+                        print(update.to_json())
+                        print("-----------------")
+                        if os.path.exists(tempat):
+                            print("ada")
+                            bot.send_photo(chat_id=update.message.chat_id, photo=open(tempat,'rb'))
+                        else:
+                            update.message.reply_text("maaf gambarnya terhapus")
                         
                         
-                except:
-                    print("exit")
-                    try:
-                        os.remove(tempat)
-                        GPIO.cleanup()
-                        print("sukses")
-                    except:
-                        print("error bro")
+                # except:
+                #     print("exit")
+                #     try:
+                #         os.remove(tempat)
+                #         GPIO.cleanup()
+                #         print("sukses")
+                #     except:
+                #         print("error bro")
                         
             else:
                 print("")
