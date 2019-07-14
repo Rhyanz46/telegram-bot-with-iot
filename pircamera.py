@@ -60,34 +60,40 @@ def echo(bot):
     # Request updates after the last update_id
     for update in bot.get_updates(offset=update_id, timeout=10):
         update_id = update.update_id + 1
-
+        Balasan = False
         if update.message:  # your bot can receive updates without messages
             # Reply to the message
             if update.message.text == "/start":
-                update.message.reply_text("Selamat datang di aplikasi deteksi pergerakan, kamu akan mendapatkan notifikasi jika ada pergerakan")
-                try:
-                    time.sleep(2) # to stabilize sensor
-                    while True:
-                        if GPIO.input(23):
-                            camera.start_preview()
-                            camera.capture(tempat)
-                            camera.stop_preview()
-                            print("Motion Detected...")
+                update.message.reply_text("Selamat datang di aplikasi deteksi pergerakan, \n . . . . . . . . . \n \nkamu akan mendapatkan notifikasi jika ada pergerakan")
+                # try:
+                time.sleep(2) # to stabilize sensor
+                while True:
+                    if GPIO.input(23):
+                        camera.start_preview()
+                        camera.capture(tempat)
+                        camera.stop_preview()
+                        print("Motion Detected...")
+                        if !Balasan:
                             update.message.reply_text("ada pergerakan bro . . .")
+                        elif Balasan:
+                            bot.send_photo(chat_id=update.message.chat_id, photo=open(tempat,'rb'))
+                        GPIO.cleanup()
+                            
+                            
                             # if os.path.exists(tempat):
                             #     print("ada")
-                            #     bot.send_photo(chat_id=update.message.chat_id, photo=open(tempat,'rb'))
+                                # bot.send_photo(chat_id=update.message.chat_id, photo=open(tempat,'rb'))
                             #     update.message.reply_text("ok gk ni ?")#
                             # else:
                             #     print("ada gan")        
                             #     time.sleep(5) #to avoid multiple detection
                             #     time.sleep(0.1) #loop delay, should be less than detection delay
-                except:
-                # Sends a message to the chat
-                    print("error bro")
-                    #bot.sendPhoto(chat_id= 857399797, photo=open(tempat))
-                    # bot.sendMessage(chat_id=857399797, str("Hi! MakerPro"))
-                    GPIO.cleanup()
+                # except:
+                # # Sends a message to the chat
+                #     print("error bro")
+                #     #bot.sendPhoto(chat_id= 857399797, photo=open(tempat))
+                #     # bot.sendMessage(chat_id=857399797, str("Hi! MakerPro"))
+                #     GPIO.cleanup()
             else:
                 update.message.reply_text(update.message.text)
                 print(update.to_json())
