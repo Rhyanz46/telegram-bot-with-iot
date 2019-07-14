@@ -67,11 +67,11 @@ def echo(bot):
                             print("-----------------")
                             print(update.to_json())
                             print("-----------------")
-                                if os.path.exists(tempat):
-                                    print("ada")
-                                    bot.send_photo(chat_id=update.message.chat_id, photo=open(tempat,'rb'))
-                                else:
-                                    update.message.reply_text("maaf gambarnya terhapus")
+                            if os.path.exists(tempat):
+                                print("ada")
+                                bot.send_photo(chat_id=update.message.chat_id, photo=open(tempat,'rb'))
+                            else:
+                                update.message.reply_text("maaf gambarnya terhapus")
                                 
                         
                 except:
