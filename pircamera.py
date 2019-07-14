@@ -44,6 +44,7 @@ def main():
         try:
             echo(bot)
         except NetworkError:
+            print("gk ada internet bos")
             sleep(1)
         except Unauthorized:
             # The user has removed or blocked the bot.
@@ -57,16 +58,14 @@ def main():
 def echo(bot):
     """Echo the message the user sent."""
     global update_id
-    # Request updates after the last update_id
     for update in bot.get_updates(offset=update_id, timeout=10):
         update_id = update.update_id + 1
 
-        if update.message:  # your bot can receive updates without messages
-            # Reply to the message
+        if update.message:
             if update.message.text == "/start":
                 update.message.reply_text("Selamat datang di aplikasi deteksi pergerakan, kamu akan mendapatkan notifikasi jika ada pergerakan")
                 try:
-                    time.sleep(2) # to stabilize sensor
+                    time.sleep(2)
                     while True:
                         if GPIO.input(23):
                             camera.start_preview()
@@ -78,15 +77,12 @@ def echo(bot):
                                 bot.send_photo(chat_id=update.message.chat_id, photo=open(tempat,'rb'))
                                 update.message.reply_text("ok gk ni ?")
                             else:
-                                print("ada gan")        
-                                time.sleep(5)
+                                print("tidak ada gambarnya")        
+                                
                         
                 except:
-                # Sends a message to the chat
                     print("error bro")
-                    #bot.sendPhoto(chat_id= 857399797, photo=open(tempat))
-                    # bot.sendMessage(chat_id=857399797, str("Hi! MakerPro"))
-                    os.remove(tempat)
+                    # os.remove(tempat)
                     GPIO.cleanup()
             else:
                 update.message.reply_text(update.message.text)
@@ -101,3 +97,5 @@ if __name__ == '__main__':
     main()
     
     
+
+
