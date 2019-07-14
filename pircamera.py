@@ -16,7 +16,8 @@ update_id = None
 balas = 0
 
 pathname = os.path.dirname(sys.argv[0])
-tempat = os.path.abspath(pathname) + "/"
+tempat = os.path.abspath(pathname)
+tempat_foto = tempat + "/foto"
 
 
 def main():
@@ -50,6 +51,7 @@ def echo(bot):
     """Echo the message the user sent."""
     global update_id
     # print("Sekarang id yang ke : {}".format(update_id))
+    balasan = False
     for update in bot.get_updates(offset=update_id, timeout=100000):
         update_id = update.update_id + 1
 
@@ -61,10 +63,17 @@ def echo(bot):
                 while True:
                     if GPIO.input(23): # nilai awalnya adalah 0, jika terdeteksi maka nilainya 1
                         nama = str(datetime.datetime.now()) + ".jpg"
-                        camera.capture(tempat + nama)
+                        alamat_foto = tempat_foto + nama
+                        camera.capture(alamat_foto)
+                        if balasan:
+                            file = open("foto/log.txt","w+")
+                        else:
+                            file = open("foto/log.txt","a+")
+                        file.write(alamat_foto)
+                        file.close()
                         update.message.reply_text("Ada Pergerakan")
-                        if os.path.exists(tempat):
-                            bot.send_photo(chat_id=update.message.chat_id, photo=open(tempat,'rb'))
+                        if os.path.exists(tempat_foto):
+                            bot.send_photo(chat_id=update.message.chat_id, photo=open(tempat_foto,'rb'))
                         else:
                             update.message.reply_text("maaf gambarnya terhapus")
                         
@@ -72,7 +81,7 @@ def echo(bot):
                 # except:
                 #     print("exit")
                 #     try:
-                #         os.remove(tempat)
+                #         os.remove(tempat_foto)
                 #         GPIO.cleanup()
                 #         print("sukses")
                 #     except:
