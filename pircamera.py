@@ -58,7 +58,7 @@ def main():
 def echo(bot):
     """Echo the message the user sent."""
     global update_id
-    for update in bot.get_updates(offset=update_id, timeout=10):
+    for update in bot.get_updates(offset=update_id, timeout=1000):
         update_id = update.update_id + 1
 
         if update.message:
@@ -72,7 +72,7 @@ def echo(bot):
                             camera.capture(tempat)
                             camera.stop_preview()
                             print("Motion Detected...")
-                            balasan = bot.get_updates(offset=update_id, timeout=10)
+                            balasan = bot.get_updates(offset=update_id, timeout=1000)
                             balasan_id = balasan.update_id + 1
                             if balasan.message:
                                 if balasan.message.text == "mana?":
