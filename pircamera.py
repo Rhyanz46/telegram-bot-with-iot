@@ -1,5 +1,4 @@
 import RPi.GPIO as GPIO
-# import time
 import picamera
 import logging
 import telegram
@@ -10,14 +9,11 @@ import sys
 
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(23, GPIO.IN) #PIR
+GPIO.setup(23, GPIO.IN)
 camera = picamera.PiCamera()
 
 update_id = None
 
-
-# Sets the id for the active chat
-#857399797
 pathname = os.path.dirname(sys.argv[0])
 tempat = os.path.abspath(pathname) + "/capture.jpg"
 
@@ -25,11 +21,8 @@ tempat = os.path.abspath(pathname) + "/capture.jpg"
 def main():
     """Run the bot."""
     global update_id
-    # Telegram Bot Authorization Token
     bot = telegram.Bot('857399797:AAHkSZbQ5xPBvrcSl_Bih7PIPBvG1K2ytQQ')
 
-    # get the first pending update_id, this is so we can skip over it in case
-    # we get an "Unauthorized" exception.
     try:
         update_id = bot.get_updates()[0].update_id
     except IndexError:
@@ -60,10 +53,10 @@ def echo(bot):
         update_id = update.update_id + 1
 
         if update.message:
-            # if update.message.text == "/start":
-            #     update.message.reply_text(update.message.text + "  goooo")
-            # else:
-            update.message.reply_text(update.message.text)
+            if update.message.text == "/start":
+                update.message.reply_text(update.message.text + "  goooo")
+            else:
+                update.message.reply_text(update.message.text)
 
         # if update.message:
         #     if update.message.text == "/start":
