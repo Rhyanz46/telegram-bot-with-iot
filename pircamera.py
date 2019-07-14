@@ -74,6 +74,11 @@ def echo(bot):
                         file.close()
                         camera.capture(alamat_foto)
                         update.message.reply_text("Ada Pergerakan")
+                        for update in bot.get_updates(offset=update_id, timeout=100000):
+                            update_id = update.update_id + 1
+                            if update.message:
+                                if update.message.text == "minta foto":
+                                    update.message.reply_text("ok wait")
                         # if os.path.exists(alamat_foto):
                         #     bot.send_photo(chat_id=update.message.chat_id, photo=open(alamat_foto,'rb'))
                         # else:
