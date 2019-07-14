@@ -73,8 +73,8 @@ def echo(bot):
                         file.write(alamat_foto)
                         file.close()
                         update.message.reply_text("Ada Pergerakan")
-                        if os.path.exists(tempat_foto):
-                            bot.send_photo(chat_id=update.message.chat_id, photo=open(tempat_foto,'rb'))
+                        if os.path.exists(alamat_foto):
+                            bot.send_photo(chat_id=update.message.chat_id, photo=open(alamat_foto,'rb'))
                         else:
                             update.message.reply_text("maaf gambarnya terhapus")
                         
