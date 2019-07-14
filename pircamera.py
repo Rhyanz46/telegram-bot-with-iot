@@ -18,7 +18,6 @@ balas = 0
 
 pathname = os.path.dirname(sys.argv[0])
 tempat = os.path.abspath(pathname)
-tempat_foto = tempat + "/foto"
 
 
 def main():
@@ -64,19 +63,19 @@ def echo(bot):
                 while True:
                     if GPIO.input(23): # nilai awalnya adalah 0, jika terdeteksi maka nilainya 1
                         nama = str(datetime.datetime.now()) + ".jpg"
-                        alamat_foto = tempat_foto + nama
+                        alamat_foto = tempat + "/foto" + nama
                         camera.capture(alamat_foto)
                         if balasan:
                             file = open("foto/log.txt","w+")
                         else:
                             file = open("foto/log.txt","a+")
-                        file.write(alamat_foto)
+                        file.write(alamat_foto + "\r\n")
                         file.close()
                         update.message.reply_text("Ada Pergerakan")
-                        if os.path.exists(alamat_foto):
-                            bot.send_photo(chat_id=update.message.chat_id, photo=open(alamat_foto,'rb'))
-                        else:
-                            update.message.reply_text("maaf gambarnya terhapus")
+                        # if os.path.exists(alamat_foto):
+                        #     bot.send_photo(chat_id=update.message.chat_id, photo=open(alamat_foto,'rb'))
+                        # else:
+                        #     update.message.reply_text("maaf gambarnya terhapus")
                         
                         
                 # except:
