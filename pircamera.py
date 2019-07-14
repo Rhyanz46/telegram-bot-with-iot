@@ -83,10 +83,14 @@ def echo(bot):
                                 update.message.reply_text("ok wait")
                                 with open(tempat_gambar + '/log.txt') as f:
                                     my_list = list(f)
-                                for a in my_list:
-                                    bot.send_photo(chat_id=update.message.chat_id, photo=open(a,'rb'))          
-                                    sleep(1)
-                                    os.remove(a)
+                                for nama_file in my_list:
+                                    nama_file = nama_file.replace('\n', '')
+                                    try:
+                                        bot.send_photo(chat_id=update.message.chat_id, photo=open(nama_file,'rb'))
+                                        sleep(1)
+                                        os.remove(nama_file)
+                                    except:
+                                        pass
                             else:
                                 break
                                     
