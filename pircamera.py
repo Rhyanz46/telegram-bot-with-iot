@@ -65,6 +65,8 @@ def echo(bot):
         if update.message:
             if update.message.text == "/start":
                 update.message.reply_text(update.message.text)
+            else:
+                continue
 
         # if update.message:
         #     if update.message.text == "/start":
