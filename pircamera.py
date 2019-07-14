@@ -65,14 +65,14 @@ def echo(bot):
                 while True:
                     if GPIO.input(23): # nilai awalnya adalah 0, jika terdeteksi maka nilainya 1
                         nama = str(datetime.datetime.now()) + ".jpg"
-                        alamat_foto = tempat_gambar + nama
-                        camera.capture(alamat_foto)
+                        alamat_foto = tempat_gambar + '/' +nama
                         if balasan:
                             file = open("foto/log.txt","w+")
                         else:
                             file = open("foto/log.txt","a+")
                         file.write(alamat_foto + "\r\n")
                         file.close()
+                        camera.capture(alamat_foto)
                         update.message.reply_text("Ada Pergerakan")
                         # if os.path.exists(alamat_foto):
                         #     bot.send_photo(chat_id=update.message.chat_id, photo=open(alamat_foto,'rb'))
