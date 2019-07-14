@@ -58,7 +58,7 @@ def main():
 def echo(bot):
     """Echo the message the user sent."""
     global update_id
-    for update in bot.get_updates(offset=update_id, timeout=10):
+    for update in bot.get_updates(offset=update_id, timeout=2000):
         update_id = update.update_id + 1
 
         if update.message:
