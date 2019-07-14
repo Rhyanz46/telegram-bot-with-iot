@@ -1,0 +1,5 @@
+virtualenv -p python3 env
+. env/bin/activate
+pip install -r req.txt
+deactivate
+echo "command untuk menjalankan aplikasi : './mulai.sh'"
