@@ -54,7 +54,7 @@ def echo(bot):
     global update_id
     # print("Sekarang id yang ke : {}".format(update_id))
     balasan = False
-    for update in bot.get_updates(offset=update_id, timeout=100000):
+    for update in bot.get_updates(offset=update_id, timeout=10):
         update_id = update.update_id + 1
 
         if update.message:
@@ -76,7 +76,7 @@ def echo(bot):
                         file.close()
                         camera.capture(alamat_foto)
                         update.message.reply_text("Ada Pergerakan")
-                        for update in bot.get_updates(offset=update_id, timeout=100000):
+                        for update in bot.get_updates(offset=update_id, timeout=10):
                             update_id = update.update_id + 1
                             if update.message and update.message.text == "minta foto":
                                 balasan = True
@@ -87,7 +87,7 @@ def echo(bot):
                                     nama_file = nama_file.replace('\n', '')
                                     try:
                                         bot.send_photo(chat_id=update.message.chat_id, photo=open(nama_file,'rb'))
-                                        sleep(1)
+                                        # sleep(1)
                                         os.remove(nama_file)
                                     except:
                                         pass
