@@ -63,7 +63,8 @@ def echo(bot):
         update_id = update.update_id + 1
 
         if update.message:
-            update.message.reply_text(update.message.text)
+            if update.message.text == "/start":
+                update.message.reply_text(update.message.text)
 
         # if update.message:
         #     if update.message.text == "/start":
