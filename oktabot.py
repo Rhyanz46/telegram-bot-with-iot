@@ -66,7 +66,7 @@ def echo(bot):
                         camera.capture(alamat_foto)
                         bot.send_photo(chat_id=update.message.chat_id, photo=open(alamat_foto,'rb'))
                     else:
-                        sleep(10)
+                        sleep(2)
 
 
 
