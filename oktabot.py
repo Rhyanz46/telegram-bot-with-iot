@@ -50,74 +50,73 @@ def main():
 
 
 def echo(bot):
-    """Echo the message the user sent."""
     global update_id
     # print("Sekarang id yang ke : {}".format(update_id))
     balasan = False
     for update in bot.get_updates(offset=update_id, timeout=10):
         update_id = update.update_id + 1
-
         if update.message:
             if update.message.text == "/start":
-                update.message.reply_text("Selamat datang di aplikasi deteksi pergerakan, kamu akan mendapatkan notifikasi jika ada pergerakan")
-                # try:
-                sleep(2)
                 while True:
-                    if GPIO.input(23): # nilai awalnya adalah 0, jika terdeteksi maka nilainya 1
-                        nama = str(datetime.datetime.now()) + ".jpg"
-                        alamat_foto = tempat_gambar + '/' +nama
-                        if balasan:
-                            file = open(tempat_gambar + "/log.txt","w+")
-                        else:
-                            file = open(tempat_gambar + "/log.txt","a+")
-                            balasan = False
-                        # file.write(alamat_foto + "\r\n")
-                        file.write(alamat_foto + "\r")
-                        file.close()
-                        camera.capture(alamat_foto)
-                        update.message.reply_text("Ada Pergerakan")
-                        for update in bot.get_updates(offset=update_id, timeout=10):
-                            update_id = update.update_id + 1
-                            if update.message and update.message.text == "minta foto":
-                                balasan = True
-                                update.message.reply_text("ok wait")
-                                with open(tempat_gambar + '/log.txt') as f:
-                                    my_list = list(f)
-                                for nama_file in my_list:
-                                    nama_file = nama_file.replace('\n', '')
-                                    try:
-                                        bot.send_photo(chat_id=update.message.chat_id, photo=open(nama_file,'rb'))
-                                        # sleep(1)
-                                        os.remove(nama_file)
-                                    except:
-                                        pass
-                            else:
-                                break
-                                    
-                        # if os.path.exists(alamat_foto):
-                        #     bot.send_photo(chat_id=update.message.chat_id, photo=open(alamat_foto,'rb'))
-                        # else:
-                        #     update.message.reply_text("maaf gambarnya terhapus")
+                    if GPIO.input(23):
+                        print("google")
+
+
+
+
+    # """Echo the message the user sent."""
+    # global update_id
+    # # print("Sekarang id yang ke : {}".format(update_id))
+    # balasan = False
+    # for update in bot.get_updates(offset=update_id, timeout=10):
+    #     update_id = update.update_id + 1
+
+    #     if update.message:
+    #         if update.message.text == "/start":
+    #             update.message.reply_text("Selamat datang di aplikasi deteksi pergerakan, kamu akan mendapatkan notifikasi jika ada pergerakan")
+    #             # try:
+    #             sleep(2)
+    #             while True:
+    #                 if GPIO.input(23): # nilai awalnya adalah 0, jika terdeteksi maka nilainya 1
+    #                     nama = str(datetime.datetime.now()) + ".jpg"
+    #                     alamat_foto = tempat_gambar + '/' +nama
+    #                     if balasan:
+    #                         file = open(tempat_gambar + "/log.txt","w+")
+    #                     else:
+    #                         file = open(tempat_gambar + "/log.txt","a+")
+    #                         balasan = False
+    #                     # file.write(alamat_foto + "\r\n")
+    #                     file.write(alamat_foto + "\r")
+    #                     file.close()
+    #                     camera.capture(alamat_foto)
+    #                     update.message.reply_text("Ada Pergerakan")
+    #                     for update in bot.get_updates(offset=update_id, timeout=10):
+    #                         update_id = update.update_id + 1
+    #                         if update.message and update.message.text == "minta foto":
+    #                             balasan = True
+    #                             update.message.reply_text("ok wait")
+    #                             with open(tempat_gambar + '/log.txt') as f:
+    #                                 my_list = list(f)
+    #                             for nama_file in my_list:
+    #                                 nama_file = nama_file.replace('\n', '')
+    #                                 try:
+    #                                     bot.send_photo(chat_id=update.message.chat_id, photo=open(nama_file,'rb'))
+    #                                     # sleep(1)
+    #                                     os.remove(nama_file)
+    #                                 except:
+    #                                     pass
+    #                         else:
+    #                             break
                         
-                        
-                # except:
-                #     print("exit")
-                #     try:
-                #         os.remove(tempat_foto)
-                #         GPIO.cleanup()
-                #         print("sukses")
-                #     except:
-                #         print("error bro")
-                        
-            else:
-                print("")
-                print("")
-                update.message.reply_text(update.message.text)
-                print(update.to_json())
-                print("")
-                print("")
-        else:
-            sleep(2)
+    #         else:
+    #             print("")
+    #             print("")
+    #             update.message.reply_text(update.message.text)
+    #             print(update.to_json())
+    #             print("")
+    #             print("")
+    #     else:
+    #         sleep(2)
 
            
 
