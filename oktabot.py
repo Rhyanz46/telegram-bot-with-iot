@@ -57,20 +57,21 @@ def echo(bot):
         update_id = update.update_id + 1
         if update.message:
             if update.message.text == "/start":
+                update.message.reply_text("Selamat datang di aplikasi deteksi pergerakan, kamu akan mendapatkan notifikasi jika ada pergerakan")
                 while True:
                     if GPIO.input(23):
-                        print("google")
+                        print("send foto")
                         nama = str(datetime.datetime.now()) + ".jpg"
                         alamat_foto = tempat_gambar + '/' +nama
                         camera.capture(alamat_foto)
-                        bot.send_photo(chat_id=update.message.chat_id, photo=open(nama_file,'rb'))
+                        bot.send_photo(chat_id=update.message.chat_id, photo=open(alamat_foto,'rb'))
                     else:
-                        sleep(5)
+                        sleep(10)
 
 
 
 
-    # """Echo the message the user sent."""
+    # # """Echo the message the user sent."""
     # global update_id
     # # print("Sekarang id yang ke : {}".format(update_id))
     # balasan = False
