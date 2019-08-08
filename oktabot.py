@@ -60,6 +60,12 @@ def echo(bot):
                 while True:
                     if GPIO.input(23):
                         print("google")
+                        nama = str(datetime.datetime.now()) + ".jpg"
+                        alamat_foto = tempat_gambar + '/' +nama
+                        camera.capture(alamat_foto)
+                        bot.send_photo(chat_id=update.message.chat_id, photo=open(nama_file,'rb'))
+                    else:
+                        sleep(5)
 
 
 
